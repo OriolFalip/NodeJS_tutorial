@@ -1,26 +1,23 @@
 const http = require('http'); //Import http module
 
 const express = require('express');
-
-const routes = require('./routes'); //This imports my requestHandler function (funcitons are objects in JS)
-const send = require('send');
-
 const app = express();
 
-app.use((req,res,next)=>{
-    console.log("First middleware");
-    next();
+
+
+
+app.post('/products',(req,res,next)=>{
+    console.log((res.body));
+    res.redirect('/');
 });
 
-app.use((req,res,next)=>{
-    console.log("second middleware");
-    res.send('<h1>Welcome welcome</h1>');
-    next();
+app.use('/add-product',(req,res,next)=>{
+    res.send('<h1>Add new product</h1><form action="/products" method="POST"><input type="text" name="products"><button type="submit">Send</button></input></form>');
 });
 
-//Creating a server
-//Using arrow functions
-const server = http.createServer(app);  //Our server is now created and when a request is recieved, it executes the requestListener function.
-//However, there is no way we can send it a request, because it is not listening.
+app.use('/',(req,res,next)=>{
+    res.send('<h1>Welcome to my shop</h1>');    
+});
 
-server.listen(3000); //In order to send it a request, it must be listening to a Port (3000 in this case)
+//Express create server and listen:
+app.listen(3001);
