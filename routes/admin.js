@@ -6,8 +6,6 @@ const path = require('path');
 const rootDir = require('../util/path.js');
 
 router.get('/add-product',(req,res,next)=>{
-    console.log(__dirname);
-    console.log(path.join(rootDir,'views','add-product.html'));
     res.sendFile(path.join(rootDir,'views','add-product.html'));    
 });
 
