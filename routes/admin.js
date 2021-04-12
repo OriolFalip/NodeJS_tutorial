@@ -9,11 +9,13 @@ const products = [];
 
 
 router.get('/add-product',(req,res,next)=>{
-    res.sendFile(path.join(rootDir,'views','add-product.html'));    
+    //res.sendFile(path.join(rootDir,'views','add-product.html'));    
+    res.render('add-product.pug', {docTitle: 'Add Product', path: '/admin/add-product'});
 });
 
 router.post('/add-product',(req,res,next)=>{
-    res.sendFile(path.join(rootDir,'views','add-product.html'));    
+    //res.sendFile(path.join(rootDir,'views','add-product.html'));
+    res.render('add-product.pug',{docTitle: 'Add Product'});
 });
 
 router.post('/products',(req,res,next)=>{
