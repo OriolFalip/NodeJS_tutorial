@@ -4,14 +4,16 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
-const adminRoutes = require('./routes/admin.js');
+const adminData = require('./routes/admin.js');
 const userRoutes = require('./routes/user');
 
+app.set('view engine', 'pug');
+//app.set('views', 'views'); //By default it always looks for views at /views so this line is not needed.
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 
-app.use('/admin',adminRoutes);
+app.use('/admin',adminData.router);
 app.use(userRoutes);
 
 
