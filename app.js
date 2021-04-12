@@ -13,4 +13,4 @@ app.use(userRoutes);
 
 
 //Express create server and listen:
-app.listen(3001);
+app.listen(3000);
