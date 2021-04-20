@@ -4,8 +4,9 @@ const app = express();
 
 const bodyParser = require('body-parser');
 
-const adminData = require('./routes/admin.js');
+const adminRoutes = require('./routes/admin.js');
 const userRoutes = require('./routes/user');
+
 const expressHandlebars = require('express-handlebars');
 
 app.engine('hbs', expressHandlebars({layoutsDir: 'views/layouts/', defaultLayout:'main-layout', extname:'hbs'}));
@@ -16,7 +17,7 @@ app.set('view engine', 'hbs');
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,'public')));
 
-app.use('/admin',adminData.router);
+app.use('/admin',adminRoutes);
 app.use(userRoutes);
 
 

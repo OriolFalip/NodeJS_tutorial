@@ -1,28 +1,27 @@
 const express = require('express');
 const router = express.Router();
 
-const path = require('path');
-
-const rootDir = require('../util/path.js');
-
+const shopController = require('../controllers/shop.js');
+const errorController = require('../controllers/error');
 const adminData = require("./admin");
-const products = adminData.products;
-router.get('/',(req,res,next)=>{
-    //console.log(adminData.products);
-    //res.sendFile(path.join(rootDir,'views','shop.html'));    
-    res.render('shop', {
-            prods: products,
-            docTitle: 'Shop',
-            path: '/',
-            hasProducts: products.length>0,
-            activeShop: true,
-            productCSS: true});
+
+router.get('/', shopController.getProducts);
+
+
+
+
+router.get('/cart', (req,res,next)=>{
+    res.render('shop/cart',{docTitle: 'Cart', activeCart: true})
 });
 
+router.get('/orders', (req,res,next)=>{
+    res.render('shop/orders',{docTitle: 'Orders', activeOrders: true})
+});
+
+router.get('/products', (req,res,next)=>{
+    res.render('shop/product-list',{docTitle: 'Products', activeProducts: true})
+});
 
 //Catch all 404 error page
-router.use('/',(req,res,next)=>{
-    res.status(404);
-    res.render('page404', {docTitle: '404: Page not found'});
-});
+router.use('/', errorController.get404);
 module.exports = router;

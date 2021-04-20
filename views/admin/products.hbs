@@ -12,13 +12,17 @@
                 </div>
                 
                 <div class="card__content">
-                    <h2 class="product__price"> {{this.price}} </h2>
+                    <h2 class="product__price"> ${{this.price}} </h2>
                     <p class="product__description">{{this.description}}</p>
                 </div>
                 
                 <div>
-                    <button class="btn" type="submit">Add to Cart</button>
+                    <a href="admin/edit-product" class="btn">Edit</a>
+                    <form action="/admin/delete-product" method ="POST">
+                        <button class="btn" type="submit">Delate</button>
+                    </form>
                 </div>
+                
             </article>
             {{/each}}
         </div>
@@ -27,4 +31,3 @@
         <h1>No products found</h1>
     {{/if}}
 </main>
-
